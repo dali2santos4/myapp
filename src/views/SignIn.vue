@@ -2,34 +2,37 @@
     <div class="container">
        <div class="left-section">
            <h1>TuniGuide</h1>
-           <h2>create an account</h2>
            <p>Welcome back! Please enter your details</p>
-           <div class="form-group">
-               <input type="text" placeholder="Name">
-           </div>
            <div class="form-group">
                <input type="email" placeholder="Email address">
            </div>
            <div class="form-group">
                <input type="password" placeholder="Password">
            </div>
-           <button class="signup-button">create my account</button>
-           <p class="terms">By signing in or creating an account, you agree with our <a href="#">Terms & Conditions</a> and <a href="#">Privacy Statement</a>.</p>
+           <button  class="login-button">Login</button>
+           <router-link to="PageAccueil">login</router-link>
+           <router-link to="SignUp">create as account sign up</router-link>
+           <a href="#" class="forgot-password">Mot de passe oublié</a>
        </div>
        <div class="right-section">
-           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Sidi_Bou_Said_street_view.jpg/1200px-Sidi_Bou_Said_street_view.jpg" alt="Tunisian View">
+           <img src="../assets/log.png" alt=" View">
        </div>
    </div>
 </template>
-<script>
-export default {
-   name: 'SignIn' 
-       
-}
 
-</script>
+
 <style>
-.container {
+* {
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box;
+           font-family: Arial, sans-serif;
+       }
+       body {
+           display: flex;
+           height: 100vh;
+       }
+       .container {
            display: flex;
            width: 100%;
        }
@@ -44,11 +47,6 @@ export default {
        }
        .left-section h1 {
            font-size: 28px;
-           font-weight: bold;
-           margin-bottom: 10px;
-       }
-       .left-section h2 {
-           font-size: 20px;
            font-weight: bold;
            margin-bottom: 10px;
        }
@@ -68,7 +66,7 @@ export default {
            border: 1px solid #ccc;
            border-radius: 5px;
        }
-       .signup-button {
+       .login-button {
            width: 100%;
            max-width: 300px;
            padding: 10px;
@@ -79,16 +77,11 @@ export default {
            cursor: pointer;
            font-size: 16px;
        }
-       .terms {
+       .forgot-password {
            font-size: 12px;
            color: #555;
            margin-top: 10px;
-           text-align: center;
-       }
-       .terms a {
-           color: black;
            text-decoration: none;
-           font-weight: bold;
        }
        .right-section {
            width: 50%;
@@ -98,5 +91,6 @@ export default {
            height: 100vh;
            object-fit: cover;
        }
-
 </style>
+      
+      
