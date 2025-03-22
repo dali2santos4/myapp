@@ -4,19 +4,23 @@
              <h1>TuniGuide</h1>
             <h2>Create an account</h2>
             <p>Welcome back! Please enter your details</p>
+            <form @submit.prevent="registerUser" class="form">
             <div class="form-group">
-                <input type="text" placeholder="Name">
+                <input v-model="user.username" type="text" placeholder="Username" required />
             </div>
              <div class="form-group">
-                 <input type="email" placeholder="Email address">
+                 <input v-model="user.email" type="email" placeholder="Email" required />
              </div>
              <div class="form-group">
-                <input type="password" placeholder="Password">
+                <input v-model="user.password" type="password" placeholder="Password" required />
             </div>
             <div class="form-group">
-                 <input type="password" placeholder="Repeat password">
+                 <input v-model="confirmPassword" type="password" placeholder="Repeat password" required />
              </div>
-             <button class="login-button">Create my account</button>
+             <p v-if="error" class="error">{{ error }}</p>
+             <button class="login-button" type="submit">Create my account</button>
+            </form>
+            <p v-if="message">{{ message }}</p>
              <p class="terms">By signing in or creating an account, you agree with our <a href="#">Terms & Conditions</a> and <a href="#">Privacy Statement</a>.</p>
  
              <span  class="already">Already have an account ?</span>
@@ -31,6 +35,49 @@
          </div>
      </div>
  </template>
+
+<script>
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      user: {
+        username: "",
+        email: "",
+        password: ""
+      },
+      confirmPassword: "",
+      message: "",
+      error: ""
+    };
+  },
+  methods: {
+    async registerUser() {
+      this.error = "";
+      this.message = "";
+
+      // Validate password match
+      if (this.user.password !== this.confirmPassword) {
+        this.error = "Passwords do not match!";
+        return;
+      }
+
+      try {
+        const response = await axios.post("http://127.0.0.1:5000/register", this.user);
+        this.message = response.data.message;
+
+        // Redirect after a short delay
+        setTimeout(() => {
+          this.$router.push("/signin"); // Redirect to login page
+        }, 1500); // Wait for 1.5 seconds to show success message
+      } catch (error) {
+        this.error = error.response?.data?.message || "Registration failed.";
+      }
+    }
+  }
+};
+</script>
  
  <style>
  
@@ -142,5 +189,19 @@
      font-weight: 500;
      color: #444;
  }
+ .error {
+  color: red;
+}
+.success {
+  color: green;
+}
+
+.form {
+    width: 100%; /* Ensure form takes full width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
  </style>
  
