@@ -1,7 +1,7 @@
 <template>
     <div class="full-page-container">
         <div class="item-container">
-            <h1 class="title">TuniGuide</h1>
+            <h1 class="title">Alliance-hotel</h1>
             <p class="subtitle">Welcome back! Please enter your details</p>
             <div class="form-group">
                 <input type="email" placeholder="Email address">
@@ -104,7 +104,7 @@
     }
 
     .item-container {
-        background-color: #f8f8f8;
+        background-color:  #f8f8f8;;
         width: 35%;
         height: 100%;
         display: flex;
@@ -129,4 +129,115 @@
         border-top-left-radius: 16px;
         border-bottom-left-radius: 16px;
     }
+
+
+    /* Responsive Design */
+    @media (max-width: 480px){
+    .full-page-container {
+        flex-direction: column;
+        width:100vw;
+        display: flex;
+        height: 100vh;
+    }
+
+    .item-container {
+        width: 100%;
+        height: 50vh;
+        order: 2;
+    }
+    .item-img {
+        width: 100vw; /* Make each container take up 50% of the width */
+        height: 50vh; /* Make each container take up 100% of the height */
+        display: flex; /* Use flexbox for item alignment inside each container */
+        justify-content: center; /* Center items horizontally */
+        align-items: center; /* Center items vertically */
+        order: 1;
+    }
+
+    .item-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 0;
+        border-bottom-right-radius: 26px;
+        border-bottom-left-radius: 26px;
+    }
+
+    .title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .terms {
+        display: none;
+    }
+
+    .form-group {
+        width: 90%;
+        max-width: 260px;
+        margin-bottom: 15px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .login-button {
+        width: 100%;
+        max-width: 260px;
+        padding: 10px;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-bottom: 10px;
+        transition: background 0.3s;
+    }
+}
+
+@media (max-width: 375px){
+    .full-page-container {
+        flex-direction: column;
+        width:100vw;
+        display: flex;
+        height: 100vh;
+    }
+
+    .item-container {
+        width: 100%;
+        height: 60vh;
+        order: 2;
+    }
+    .item-img {
+        width: 100vw; /* Make each container take up 50% of the width */
+        height: 40vh; /* Make each container take up 100% of the height */
+        display: flex; /* Use flexbox for item alignment inside each container */
+        justify-content: center; /* Center items horizontally */
+        align-items: center; /* Center items vertically */
+        order: 1;
+    }
+
+    .title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+}
+
 </style>

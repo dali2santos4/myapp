@@ -1,35 +1,34 @@
 <template>
     <div class="full-page-container">
-         <div class="item-container">
-             <h1>TuniGuide</h1>
-            <h2>Create an account</h2>
-            <p>Welcome back! Please enter your details</p>
-            <form @submit.prevent="registerUser" class="form">
-            <div class="form-group">
-                <input v-model="user.username" type="text" placeholder="Username" required />
-            </div>
-             <div class="form-group">
-                 <input v-model="user.email" type="email" placeholder="Email" required />
-             </div>
-             <div class="form-group">
-                <input v-model="user.password" type="password" placeholder="Password" required />
-            </div>
-            <div class="form-group">
-                 <input v-model="confirmPassword" type="password" placeholder="Repeat password" required />
-             </div>
-             <p v-if="error" class="error">{{ error }}</p>
-             <button class="login-button" type="submit">Create my account</button>
-            </form>
-            <p v-if="message">{{ message }}</p>
-             <p class="terms">By signing in or creating an account, you agree with our <a href="#">Terms & Conditions</a> and <a href="#">Privacy Statement</a>.</p>
- 
-             <span  class="already">Already have an account ?</span>
-             <router-link to="/signin">
-                 <span class="already">
-                     login
-                 </span>
-             </router-link>
-         </div>
+      <div class="item-container">
+        <h1>Create an account</h1>
+              <p>Welcome back! Please enter your details</p>
+              <form @submit.prevent="registerUser" class="form">
+              <div class="form-group">
+                  <input v-model="user.username" type="text" placeholder="Username" required />
+              </div>
+               <div class="form-group">
+                   <input v-model="user.email" type="email" placeholder="Email" required />
+               </div>
+               <div class="form-group">
+                  <input v-model="user.password" type="password" placeholder="Password" required />
+              </div>
+              <div class="form-group">
+                   <input v-model="confirmPassword" type="password" placeholder="Repeat password" required />
+               </div>
+               <p v-if="error" class="error">{{ error }}</p>
+               <button class="login-button" type="submit">Create my account</button>
+              </form>
+              <p v-if="message">{{ message }}</p>
+               <p class="terms">By signing in or creating an account, you agree with our <a href="#">Terms & Conditions</a> and <a href="#">Privacy Statement</a>.</p>
+   
+               <p >Already have an account ?</p>
+               <router-link to="/signin">
+                   <span class="already">
+                       login
+                   </span>
+               </router-link>
+      </div>
          <div class="item-img">
              <img src="../assets/htht.jpg"  alt="Image" class="item-image" />
          </div>
@@ -93,7 +92,7 @@ export default {
  }
  
  h1 {
-     font-size: 28px;
+     font-size: 32px;
      font-weight: bold;
      color: #333;
      margin-bottom: 10px;
@@ -106,9 +105,9 @@ export default {
  }
  
  p {
-     font-size: 16px;
+     font-size: 14px;
      color: #666;
-     margin-bottom: 15px;
+     margin-bottom: 10px;
      text-align: center;
  }
  
@@ -143,6 +142,7 @@ export default {
  }
  .full-page-container {
      display: flex; /* Use flexbox for horizontal alignment */
+     flex-direction: row;
      justify-content: space-between; /* Distribute space between items */
      align-items: center; /* Vertically align items to the center */
      height: 100vh; /* Full viewport height */
@@ -151,14 +151,12 @@ export default {
  }
  
  .item-container {
-     background-color: #f8f8f8;
+     /*background-color: #f8f8f8;*/
      width: 50%; /* Make each container take up 50% of the width */
      height: 100%; /* Make each container take up 100% of the height */
-     display: flex; /* Use flexbox for item alignment inside each container */
      justify-content: center; /* Center items horizontally */
      align-items: center; /* Center items vertically */
-     flex-direction: column;
-     padding: 20px;
+     /*padding: 20px;*/
  }
  
  .item-img {
@@ -187,7 +185,7 @@ export default {
  .already {
      font-size: 14px;
      font-weight: 500;
-     color: #444;
+     color: #007bff;
  }
  .error {
   color: red;
