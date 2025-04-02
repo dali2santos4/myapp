@@ -34,6 +34,11 @@ export default {
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* To make sure it stays on top */
   }
 
   .logo{

@@ -7,47 +7,33 @@ export default {
 <template>
       <section class="fresh-market">
           
-          
-          
+
+            
+                        <h2>Fresh On The Market</h2>
+                <div class="filter-buttons">
+                    <button class="active">All</button>
+                    <button>Rent</button>
+                </div>
+                <div class="cards">
+                    
+                    <div class="card">
+                        <img src="../assets/room1.jpg" alt="Large Standard Single Room">
+                        <div class="card-content">
+                            <h3>Large Standard Single Room</h3>
+                            <p>Free Wi-Fi, Towels, Private bathroom with shower, Non-smoking, Television, Toilet, Shared kitchen, Private shower room</p>
+                        </div>
+                    </div>
+            
+                </div>
+            
+            
+                <div class="see-all">
+                    <button>See All Properties</button>
+                </div>
+            
+ 
      
-            <h2>Fresh On The Market</h2>
-            <div class="filter-buttons">
-                <button class="active">All</button>
-                <button>Rent</button>
-            </div>
-            <div class="cards">
-                
-                <div class="card">
-                    <img src="r1.jpg" alt="Large Standard Single Room">
-                    <div class="card-content">
-                        <h3>Large Standard Single Room</h3>
-                        <p>Free Wi-Fi, Towels, Private bathroom with shower, Non-smoking, Television, Toilet, Shared kitchen, Private shower room</p>
-                    </div>
-                </div>
-        
-                
-                <div class="card">
-                    <img src="r2.jpg" alt="Standard Twin Room">
-                    <div class="card-content">
-                        <h3>Standard Twin Room</h3>
-                        <p>Free Wi-Fi, Towels, Free toiletries, Heating, Television, Closet / Wardrobe, Toilet, Private shower room, Shared kitchen access</p>
-                    </div>
-                </div>
-        
-    
-                <div class="card">
-                    <img src="r3.jpg" alt="Standard Double Room">
-                    <div class="card-content">
-                        <h3>Standard Double Room</h3>
-                        <p>Free Wi-Fi, Private shower room, towels, toilet, free toiletries, television, shared equipped kitchen, hairdryer on request</p>
-                    </div>
-                </div>
-            </div>
-        
-        
-            <div class="see-all">
-                <button>See All Properties</button>
-            </div>
+
         
      
     </section>
@@ -56,9 +42,9 @@ export default {
 <style>
 .fresh-market {
     padding: 50px;
+    height: 40%;
+    width: 100vw;
     background: #fff;
-    overflow-x: hidden; /* Prevent horizontal scroll */
-    overflow-y: auto; /* Allow vertical scroll if content overflows */
 }
 
 .fresh-market h2 {
