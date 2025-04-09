@@ -7,6 +7,9 @@ import Testimonial from '@/components/Testimonial.vue';
 
 import Footer from '@/components/Footer.vue';
 
+const token = localStorage.getItem('token')
+console.log('token', token)
+
 </script>
 
 <template> 

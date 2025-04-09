@@ -1,6 +1,16 @@
 <script>
 export default {
   name: "NavbarSection", // <-- Multi-word name
+  
+  data() {
+  
+      const token = localStorage.getItem('token')
+      console.log('token', token)
+      return {
+        // Define your variables here
+        token: token,
+      };
+    }
 };
 
 </script>
@@ -12,13 +22,19 @@ export default {
         <img src="../assets/loggo.png"  alt="Image" class="logo-img" />
         <h2 class="styled-heading">Alliance Hotel</h2>
       </div>
-      <div class="action">
+      <div v-if="!token" class="action">
         <div class="btn-signup">
           <p class="btn-text-2">Sign Up</p>
         </div>
         <RouterLink to="/signin" class="btn-login">
           <p class="btn-text-1">Login</p>
         </RouterLink>
+      </div>
+
+      <div v-else class="action">
+        <div class="btn-user">
+          <img src="../assets/usr-icn.png"  alt="Image" class="item-image" />
+        </div>
       </div>
     </header>
 </template>
@@ -98,4 +114,19 @@ export default {
   text-align: center; /* Center the text */
   font-weight: bold; /* Make the text bold */
 }
+.btn-user{
+  background-color: #F0C807;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+}
+
+.item-image {
+     width: 40px; /* Make the image take full width of the container */
+     height: 40px; /* Make the image take full height of the container */
+     object-fit: cover; /* Make the image cover the container without distortion */
+ }
 </style>
