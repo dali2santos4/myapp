@@ -4,11 +4,18 @@ export default {
   
   data() {
   
-      const token = localStorage.getItem('token')
+      let token = localStorage.getItem('token')
       console.log('token', token)
+
+      const logout = () => {
+        localStorage.removeItem('token'); // or whatever key you're using
+        this.$router.push('/'); // Redirect to login page
+      }
+
       return {
         // Define your variables here
         token: token,
+        logout
       };
     }
 };
@@ -22,19 +29,37 @@ export default {
         <img src="../assets/loggo.png"  alt="Image" class="logo-img" />
         <h2 class="styled-heading">Alliance Hotel</h2>
       </div>
+
+      <nav v-if="token" class="nav-links">
+        <a href="#">Welcome</a>
+        <RouterLink to="/explore" >
+          <a href="#">Explore</a>
+        </RouterLink>
+        <a href="#">Profile</a>
+        <a href="#">My Reservations</a>
+        <a href="#">Favorites</a>
+      </nav>
+
       <div v-if="!token" class="action">
-        <div class="btn-signup">
+        <RouterLink  to="/signup" class="btn-signup">
           <p class="btn-text-2">Sign Up</p>
-        </div>
+        </RouterLink>
         <RouterLink to="/signin" class="btn-login">
           <p class="btn-text-1">Login</p>
         </RouterLink>
       </div>
 
       <div v-else class="action">
-        <div class="btn-user">
-          <img src="../assets/usr-icn.png"  alt="Image" class="item-image" />
+        <RouterLink to="/messanger" class="btn-act">
+          <img src="../assets/mess.png"  alt="Image" class="item-image-w" />
+        </RouterLink>
+
+        <div class="btn-act">
+          <img src="../assets/not.png"  alt="Image" class="item-image-w" />
         </div>
+        <button class="btn-act" @click="logout()">
+          <img src="../assets/logout.png"  alt="Image" class="item-image-x" />
+        </button>
       </div>
     </header>
 </template>
@@ -65,6 +90,7 @@ export default {
   .action{
     height: 50px;
     display: flex;
+    align-items: center;
   }
   .logo-img{
     height: 100%;
@@ -122,11 +148,51 @@ export default {
   align-items: center;
   justify-content: center;
   border-radius: 30px;
+  margin-right: 6px;
 }
-
+.btn-act{
+  background-color: transparent;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  margin-right: 10px;
+  color: aliceblue;
+}
 .item-image {
-     width: 40px; /* Make the image take full width of the container */
-     height: 40px; /* Make the image take full height of the container */
+     width: 25px; /* Make the image take full width of the container */
+     height: 25px; /* Make the image take full height of the container */
      object-fit: cover; /* Make the image cover the container without distortion */
  }
+
+ .item-image-w {
+     width: 25px; /* Make the image take full width of the container */
+     height: 25px; /* Make the image take full height of the container */
+     object-fit: cover; /* Make the image cover the container without distortion */
+     filter: brightness(0) invert(1);
+     transition: filter 0.3s ease;
+ }
+ .item-image-x {
+     width: 20px; /* Make the image take full width of the container */
+     height: 20px; /* Make the image take full height of the container */
+     object-fit: cover; /* Make the image cover the container without distortion */
+     filter: brightness(0) invert(1);
+     transition: filter 0.3s ease;
+ }
+
+ .item-image-w:hover,  .item-image-x:hover{
+  filter: brightness(0) invert(1) sepia(1) saturate(10000%) hue-rotate(10deg); /* white → yellow */
+}
+
+ .nav-links a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  color: #facc15;
+}
 </style>

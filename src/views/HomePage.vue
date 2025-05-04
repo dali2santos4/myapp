@@ -1,11 +1,9 @@
 <script setup>
 import Hero from '@/components/Hero.vue';
-import Navbar from '@/components/Navbar.vue';
 import Market from '@/components/Market.vue';
 import Location from '@/components/Location.vue';
 import Testimonial from '@/components/Testimonial.vue';
 
-import Footer from '@/components/Footer.vue';
 
 const token = localStorage.getItem('token')
 console.log('token', token)
@@ -15,7 +13,6 @@ console.log('token', token)
 <template> 
 <div class="elem">
   <div class="container">
-      <Navbar />
 
       <Hero />
     </div>
@@ -25,7 +22,6 @@ console.log('token', token)
 
     <Testimonial />
 
-    <Footer />
   </div>
 
 </template>

@@ -40,6 +40,7 @@ export default {
     background-color: #404142;
     color: #f1f1f1;
     padding: 2rem;
+    width: 100vw;
   }
   
   .footer-content {
