@@ -10,7 +10,7 @@
                 <input v-model="password" type="password" placeholder="Password" autocomplete="current-password" />
             </div>
             <button class="login-button" @click="handleSubmit">Login</button>
-            <router-link to="/SignUp" class="signup-link">Create an account</router-link>
+            <router-link to="/signup" class="signup-link">Create an account</router-link>
             <a href="#" class="forgot-password">Mot de passe oublié</a>
         </div>
         <div class="item-img">
@@ -44,7 +44,13 @@ export default {
 
                 if (response.status === 200) {
                     localStorage.setItem("token", response.data.token);
-                    router.push("/");
+                    localStorage.setItem("role", response.data.role);
+                    console.log('res',  response.data)
+                    if (response.data.role == "ADM") {
+                        router.push("/dashboard");
+                    }else{
+                        router.push("/");
+                    }
                 } else {
                     alert(response.data.message || "Something went wrong!");
                 }

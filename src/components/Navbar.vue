@@ -5,16 +5,21 @@ export default {
   data() {
   
       let token = localStorage.getItem('token')
-      console.log('token', token)
+      let role = localStorage.getItem('role')
 
       const logout = () => {
         localStorage.removeItem('token'); // or whatever key you're using
+        localStorage.removeItem('role'); // or whatever key you're using
         this.$router.push('/'); // Redirect to login page
+
+        // Refresh the page
+        window.location.reload();
       }
 
       return {
         // Define your variables here
         token: token,
+        role: role,
         logout
       };
     }
@@ -27,10 +32,13 @@ export default {
      <header class="header">
       <div class="logo">
         <img src="../assets/loggo.png"  alt="Image" class="logo-img" />
-        <h2 class="styled-heading">Alliance Hotel</h2>
+       
+        <RouterLink  to="/" class="home">
+           <h2 class="styled-heading">Alliance Hotel</h2>
+        </RouterLink>
       </div>
 
-      <nav v-if="token" class="nav-links">
+      <nav v-if="token && role == 'ADM'" class="nav-links">
         <a href="#">Welcome</a>
         <RouterLink to="/explore" >
           <a href="#">Explore</a>
@@ -106,6 +114,7 @@ export default {
     justify-content: center;
     height: 50px;
     margin-right: 16px;
+    text-decoration: none;
   }
 
   .btn-login{
@@ -115,6 +124,7 @@ export default {
     border-radius: 25px;
     display: flex;
     align-items: center;
+    text-decoration: none;
     justify-content: center;
   }
 
@@ -130,6 +140,7 @@ export default {
     color: #fff;
     font-weight: 500;
     margin: 0;
+    text-decoration: none;
   }
 
   .styled-heading {
@@ -194,5 +205,9 @@ export default {
 
 .nav-links a:hover {
   color: #facc15;
+}
+
+.home{
+  text-decoration: none;
 }
 </style>

@@ -26,7 +26,7 @@ console.log('token', token)
 
 </template>
   
-<style>
+<style >
 .elem {
   display: flex;
   flex-direction: column;

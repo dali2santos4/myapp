@@ -8,12 +8,19 @@ export default {
  <section class="content">
       
      
-      <div class="overlay">
-          <div class="text-content">
-              <h1>Live Your Adventure<br>Anywhere</h1>
-              <span>Discover unique rentals around the world and embrace a nomadic lifestyle.</span>
-              <button class="btn-primary">Find Your Home</button>
-          </div>
+        <div class="overlay">
+            <div class="text-content">
+                <h1>Live Your Adventure<br>Anywhere</h1>
+                <span>Discover unique rentals around the world and embrace a nomadic lifestyle.</span>
+                <!--
+                    <button class="btn-primary" >Find Your Home</button>
+                    -->
+                
+                
+                <RouterLink to="/explore" class="btn-primary">
+                    <p class="x-span">Find Your Home</p>
+                </RouterLink>
+            </div>
 
 
           <div class="search-box">
@@ -210,5 +217,13 @@ export default {
     cursor: pointer;
     max-width: 200px;
     margin-top: 16px;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.x-span{
+    color: #000;
+    margin: 0;
 }
 </style>

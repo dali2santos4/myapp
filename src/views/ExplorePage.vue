@@ -63,6 +63,7 @@
 
 .container {
   padding: 20px  ;
+  width: 100vw;
 }
 
 .search-bar {

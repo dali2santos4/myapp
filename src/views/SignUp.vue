@@ -17,13 +17,13 @@
                    <input v-model="confirmPassword" type="password" placeholder="Repeat password" required />
                </div>
                <p v-if="error" class="error">{{ error }}</p>
-               <button class="login-button" type="submit">Create my account</button>
+               <button class="login-button" type="submit">Create</button>
               </form>
               <p v-if="message">{{ message }}</p>
                <p class="terms">By signing in or creating an account, you agree with our <a href="#">Terms & Conditions</a> and <a href="#">Privacy Statement</a>.</p>
    
                <p >Already have an account ?</p>
-               <router-link to="/signin">
+               <router-link to="/signin" class="back-button" >
                    <span class="already">
                        login
                    </span>
@@ -133,6 +133,9 @@ export default {
      cursor: pointer;
      font-size: 16px;
      margin-bottom: 6px;
+     text-decoration: none;
+     justify-content: center;
+     display: flex;
  }
  .forgot-password {
      font-size: 12px;
@@ -185,7 +188,8 @@ export default {
  .already {
      font-size: 14px;
      font-weight: 500;
-     color: #007bff;
+     color: #000;
+     text-decoration: none;
  }
  .error {
   color: red;
@@ -200,6 +204,21 @@ export default {
   flex-direction: column;
   align-items: center;
 }
+
+.back-button {
+     width: 100%;
+     max-width: 300px;
+     padding: 10px;
+     background-color: #fff;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 16px;
+     margin-bottom: 6px;
+     text-decoration: none;
+     justify-content: center;
+     display: flex;
+ }
 
  </style>
  
