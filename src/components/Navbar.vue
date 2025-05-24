@@ -38,8 +38,7 @@ export default {
         </RouterLink>
       </div>
 
-      <nav v-if="token && role == 'ADM'" class="nav-links">
-        <a href="#">Welcome</a>
+      <nav v-if="token && role != 'ADM' " class="nav-links">
         <RouterLink to="/explore" >
           <a href="#">Explore</a>
         </RouterLink>

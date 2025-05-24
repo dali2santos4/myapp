@@ -14,7 +14,6 @@ export default {
         <li class="active">Dashboard</li>
         <li>Creation</li>
         <li>Reservation</li>
-        <li>message</li>
         <li>Avis</li>
         <li>Reports</li>
       </ul>
