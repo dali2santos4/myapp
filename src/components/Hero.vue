@@ -22,38 +22,40 @@ export default {
                 </RouterLink>
             </div>
 
-
-          <div class="search-box">
-              <div class="input-group">
-                  <label>Rent</label>
-                  <select>
-                      <option>All</option>
-                      <option>Daily</option>
-                      <option>Monthly</option>
-                  </select>
-              </div>
-              <div class="input-group">
-                  <label>Type</label>
-                  <select>
-                      <option>All</option>
-                      <option>House</option>
-                      <option>Apartment</option>
-                      <option>Villa</option>
-                  </select>
-              </div>
-              <div class="input-group">
-                  <label>City</label>
-                  <input type="text" placeholder="Localization">
-              </div>
-              <div class="input-group">
-                  <label>Price range</label>
-                  <div class="price-inputs">
-                      <input type="number" placeholder="Min">
-                      <input type="number" placeholder="Max">
-                  </div>
-              </div>
-              <button class="btn-search">Search 🔍</button>
-          </div>
+<!--
+    <div class="search-box">
+        <div class="input-group">
+            <label>Rent</label>
+            <select>
+                <option>All</option>
+                <option>Daily</option>
+                <option>Monthly</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Type</label>
+            <select>
+                <option>All</option>
+                <option>House</option>
+                <option>Apartment</option>
+                <option>Villa</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>City</label>
+            <input type="text" placeholder="Localization">
+        </div>
+        <div class="input-group">
+            <label>Price range</label>
+            <div class="price-inputs">
+                <input type="number" placeholder="Min">
+                <input type="number" placeholder="Max">
+            </div>
+        </div>
+        <button class="btn-search">Search 🔍</button>
+    </div>
+            
+-->
       </div>
   </section>
 </template>

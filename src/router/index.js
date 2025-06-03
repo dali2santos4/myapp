@@ -6,6 +6,8 @@ import PageAccueil from '../views/PageAccueil.vue';
 import ExplorePage from '@/views/ExplorePage.vue';
 import Messanger from '@/views/Messanger.vue';
 import Dashboard from '@/views/Dashboard.vue';
+import Profile from '@/views/Profile.vue';
+import HotelDetails from '../views/HotelDetails.vue'
 
 const routes = [
   { path: '/', component: HomePage, name: 'home' },
@@ -15,6 +17,12 @@ const routes = [
   { path: '/PageAccueil', component: PageAccueil },
   { path: '/messanger', component: Messanger },
   { path: '/dashboard', component: Dashboard },
+  { path: '/profile', component: Profile },
+  {
+    path: '/hotel/:id', // 👈 Dynamic route
+    name: 'HotelDetails',
+    component: HotelDetails,
+  },
 ];
 
 const router = createRouter({

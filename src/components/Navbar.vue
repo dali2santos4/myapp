@@ -42,7 +42,11 @@ export default {
         <RouterLink to="/explore" >
           <a href="#">Explore</a>
         </RouterLink>
-        <a href="#">Profile</a>
+
+        <RouterLink to="/profile" >
+          <a href="#">Profile</a>
+        </RouterLink>
+
         <a href="#">My Reservations</a>
         <a href="#">Favorites</a>
       </nav>
