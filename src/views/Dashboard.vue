@@ -9,16 +9,6 @@ export default {
 <template> 
 
 <div class="container">
-    <aside >
-      <ul class="sidebar">
-        <li class="active">Dashboard</li>
-        <li>Creation</li>
-        <li>Reservation</li>
-        <li>Avis</li>
-        <li>Reports</li>
-      </ul>
-    </aside>
-
     <main class="main-content">
       <section class="dashboard">
         <h2>Manager Dashboard</h2>
@@ -27,14 +17,6 @@ export default {
         <div class="cards">
           <div class="card">
             <h3>Length of Service</h3>
-            <div class="chart-placeholder">[Graph here]</div>
-          </div>
-          <div class="card">
-            <h3>Job Level</h3>
-            <div class="chart-placeholder">[Graph here]</div>
-          </div>
-          <div class="card">
-            <h3>Gender Diversity</h3>
             <div class="chart-placeholder">[Graph here]</div>
           </div>
         </div>

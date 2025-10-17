@@ -1,5 +1,6 @@
 <script setup>
-import { useRoute } from 'vue-router'
+import { ref } from "vue"
+import { useRoute } from "vue-router"
 
 const hotels = [
   {
@@ -18,7 +19,8 @@ const hotels = [
       'Reservations': true,
     },
     type: 'Restaurant',
-    image: 'https://images.unsplash.com/photo-1600891963934-c6f152f5574d?auto=format&fit=crop&w=250&q=80'
+    image: 'https://images.unsplash.com/photo-1600891963934-c6f152f5574d?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 120
   },
   {
     id: 2,
@@ -37,384 +39,334 @@ const hotels = [
       'Parking': true,
     },
     hotelInfo: {
-      'Check In': '3.00 PM',
-      'Check Out': '12.00 PM',
+      'Check In': '3:00 PM',
+      'Check Out': '12:00 PM',
       'Parking Area': 50,
       'Minimum Age to Check In': 18,
     },
     type: 'Hotel',
-    image: 'https://images.unsplash.com/photo-1542317854-336c984173cb?auto=format&fit=crop&w=250&q=80'
+    image: 'https://images.unsplash.com/photo-1542317854-336c984173cb?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 200
   },
   {
     id: 3,
-    name: 'Eiffel Tower Tour',
-    rating: 4.9,
+    name: 'La Belle Époque',
+    rating: 4.7,
     stars: 0,
-    location: '75007 Paris',
-    description: 'Enjoy an unforgettable guided tour of the Eiffel Tower, including priority access and breathtaking views.',
+    location: '69002 Lyon',
+    description: 'Charming bistro offering a fusion of traditional and modern French dishes in a vibrant atmosphere.',
     amenities: {
-      'Guide Included': true,
-      'Duration': '2 hours',
-      'Tickets Included': true,
-      'Group Size': 15,
-      'Accessibility': 'Limited',
+      'Outdoor Seating': true,
+      'Free WiFi': true,
+      'Parking': false,
+      'Live Music': false,
+      'Wheelchair Accessible': true,
+      'Reservations': true,
     },
-    type: 'Activity',
-    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=250&q=80'
+    type: 'Restaurant',
+    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 90
   },
   {
     id: 4,
-    name: 'Chez Marie',
-    rating: 4.3,
-    stars: 0,
-    location: '75004 Paris',
-    description: 'Traditional French bistro offering a warm atmosphere and a seasonal menu with local specialties.',
+    name: 'Château du Soleil',
+    rating: 4.9,
+    stars: 5,
+    location: '83990 Saint-Tropez',
+    description: 'Luxurious seaside hotel with stunning views, world-class spa, and gourmet dining options.',
     amenities: {
-      'Outdoor Seating': true,
-      'Pet Friendly': true,
-      'Free WiFi': false,
-      'Reservations': true,
-      'Live Music': false,
+      'Free WiFi': true,
+      'Swimming Pool': true,
+      'Gym': true,
+      'Restaurant': true,
+      'Room Service': true,
+      'Air Conditioning': true,
+      'Parking': true,
+      'Spa': true,
     },
-    type: 'Restaurant',
-    image: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=250&q=80'
+    hotelInfo: {
+      'Check In': '2:00 PM',
+      'Check Out': '11:00 AM',
+      'Parking Area': 30,
+      'Minimum Age to Check In': 21,
+    },
+    type: 'Hotel',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 350
   },
   {
     id: 5,
-    name: 'Parisian Stay',
-    rating: 4.7,
-    stars: 3,
+    name: 'Café de la Paix',
+    rating: 4.3,
+    stars: 0,
     location: '75009 Paris',
-    description: 'Comfortable hotel with charming rooms and attentive service, located near shopping and dining areas.',
+    description: 'Historic café known for its opulent decor and a menu featuring classic Parisian pastries and coffee.',
+    amenities: {
+      'Outdoor Seating': true,
+      'Free WiFi': true,
+      'Parking': false,
+      'Live Music': false,
+      'Wheelchair Accessible': true,
+      'Reservations': false,
+    },
+    type: 'Restaurant',
+    image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 60
+  },
+  {
+    id: 6,
+    name: 'Auberge des Montagnes',
+    rating: 4.6,
+    stars: 3,
+    location: '74400 Chamonix',
+    description: 'Cozy alpine hotel perfect for skiers, with warm rooms and easy access to Mont Blanc slopes.',
     amenities: {
       'Free WiFi': true,
-      'Breakfast Included': true,
-      'Laundry Service': true,
-      '24-hour Front Desk': true,
+      'Swimming Pool': false,
+      'Gym': false,
+      'Restaurant': true,
+      'Room Service': false,
+      'Air Conditioning': false,
       'Parking': true,
-      'Air Conditioning': true,
     },
     hotelInfo: {
-      'Check In': '2.00 PM',
-      'Check Out': '11.00 AM',
+      'Check In': '4:00 PM',
+      'Check Out': '10:00 AM',
       'Parking Area': 20,
       'Minimum Age to Check In': 18,
     },
     type: 'Hotel',
-    image: 'https://images.unsplash.com/photo-1560067174-89427a2a0f29?auto=format&fit=crop&w=250&q=80'
-  },
-  {
-    id: 6,
-    name: 'Seine River Cruise',
-    rating: 4.8,
-    stars: 0,
-    location: '75005 Paris',
-    description: 'Relax on a scenic cruise along the Seine River, enjoying views of Paris landmarks and a lively atmosphere.',
-    amenities: {
-      'Duration': '1.5 hours',
-      'Onboard Snacks': true,
-      'Audio Guide': true,
-      'Accessibility': 'Limited',
-      'Tickets Included': true,
-    },
-    type: 'Activity',
-    image: 'https://images.unsplash.com/photo-1602524207232-0c3ee9427c9b?auto=format&fit=crop&w=250&q=80'
+    image: 'https://images.unsplash.com/photo-1576675764574-81a7256b7023?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 150
   },
   {
     id: 7,
-    name: 'Bistro Belleville',
+    name: 'Trattoria Bella',
     rating: 4.4,
     stars: 0,
-    location: '75020 Paris',
-    description: 'Friendly neighborhood bistro serving hearty French dishes and local wines in a casual setting.',
+    location: '31000 Toulouse',
+    description: 'Authentic Italian trattoria serving homemade pasta and wood-fired pizzas in a rustic setting.',
     amenities: {
       'Outdoor Seating': true,
-      'Pet Friendly': true,
       'Free WiFi': false,
+      'Parking': true,
+      'Live Music': true,
+      'Wheelchair Accessible': true,
       'Reservations': true,
-      'Live Music': false,
     },
     type: 'Restaurant',
-    image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=250&q=80'
+    image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 80
   },
   {
     id: 8,
-    name: 'Montmartre Inn',
-    rating: 4.2,
-    stars: 3,
-    location: '75018 Paris',
-    description: 'Charming hotel near Montmartre with cozy rooms, perfect for exploring the artistic district of Paris.',
-    amenities: {
-      'Free WiFi': true,
-      'Breakfast Included': true,
-      '24-hour Front Desk': true,
-      'Parking': false,
-      'Air Conditioning': true,
-    },
-    hotelInfo: {
-      'Check In': '3.00 PM',
-      'Check Out': '11.00 AM',
-      'Parking Area': 0,
-      'Minimum Age to Check In': 18,
-    },
-    type: 'Hotel',
-    image: 'https://images.unsplash.com/photo-1542317850-88d7e3a3705c?auto=format&fit=crop&w=250&q=80'
-  },
-  {
-    id: 9,
-    name: 'Louvre Guided Visit',
-    rating: 4.9,
-    stars: 0,
-    location: '75001 Paris',
-    description: 'Explore the Louvre with a professional guide who shares insights about famous artworks and history.',
-    amenities: {
-      'Guide Included': true,
-      'Duration': '3 hours',
-      'Tickets Included': true,
-      'Group Size': 20,
-      'Accessibility': 'Good',
-    },
-    type: 'Activity',
-    image: 'https://images.unsplash.com/photo-1534850336045-c6c6d287f89e?auto=format&fit=crop&w=250&q=80'
-  },
-  {
-    id: 10,
-    name: 'Café de Flore',
-    rating: 4.6,
-    stars: 0,
-    location: '75006 Paris',
-    description: 'Historic café famous for its intellectual clientele and classic Parisian ambiance.',
-    amenities: {
-      'Outdoor Seating': true,
-      'Pet Friendly': false,
-      'Free WiFi': true,
-      'Reservations': false,
-      'Live Music': false,
-    },
-    type: 'Restaurant',
-    image: 'https://images.unsplash.com/photo-1604893431688-803f66e493f9?auto=format&fit=crop&w=250&q=80'
-  },
-  {
-    id: 11,
-    name: 'Etoile Palace',
-    rating: 4.7,
-    stars: 5,
-    location: '75008 Paris',
-    description: 'Luxury hotel featuring elegant suites, gourmet dining, and exceptional service in the heart of Paris.',
+    name: 'Hôtel de la Mer',
+    rating: 4.8,
+    stars: 4,
+    location: '06000 Nice',
+    description: 'Elegant beachfront hotel with modern rooms, a rooftop terrace, and proximity to the Promenade des Anglais.',
     amenities: {
       'Free WiFi': true,
       'Swimming Pool': true,
-      'Spa': true,
+      'Gym': true,
+      'Restaurant': true,
+      'Room Service': true,
+      'Air Conditioning': true,
+      'Parking': true,
+      'Beach Access': true,
+    },
+    hotelInfo: {
+      'Check In': '3:00 PM',
+      'Check Out': '11:30 AM',
+      'Parking Area': 40,
+      'Minimum Age to Check In': 18,
+    },
+    type: 'Hotel',
+    image: 'https://images.unsplash.com/photo-1517840901100-8179e20d97c5?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 250
+  },
+  {
+    id: 9,
+    name: 'Seine River Cruise',
+    rating: 4.6,
+    stars: 0,
+    location: '75004 Paris',
+    description: 'Scenic evening cruise along the Seine, offering stunning views of Paris landmarks like the Eiffel Tower and Notre-Dame.',
+    amenities: {
+      'Guided Tour': true,
+      'Food Available': true,
+      'Wheelchair Accessible': true,
+      'Reservations': true,
+      'Outdoor Seating': true,
+    },
+    type: 'Activity',
+    image: 'https://images.unsplash.com/photo-1502602898650-2c301c8c3633?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 45
+  },
+  {
+    id: 10,
+    name: 'Villa Étoile',
+    rating: 4.7,
+    stars: 4,
+    location: '06400 Cannes',
+    description: 'Boutique hotel with elegant rooms, a lush garden, and close proximity to the Cannes Film Festival venues.',
+    amenities: {
+      'Free WiFi': true,
+      'Swimming Pool': true,
+      'Gym': false,
       'Restaurant': true,
       'Room Service': true,
       'Air Conditioning': true,
       'Parking': true,
     },
     hotelInfo: {
-      'Check In': '3.00 PM',
-      'Check Out': '12.00 PM',
-      'Parking Area': 60,
+      'Check In': '3:00 PM',
+      'Check Out': '11:00 AM',
+      'Parking Area': 25,
       'Minimum Age to Check In': 18,
     },
     type: 'Hotel',
-    image: 'https://images.unsplash.com/photo-1582719478148-bd1aa4a2c859?auto=format&fit=crop&w=250&q=80'
+    image: 'https://images.unsplash.com/photo-1564501049412-3d59d1a81e43?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 220
+  },
+  {
+    id: 11,
+    name: 'Bistro du Marché',
+    rating: 4.2,
+    stars: 0,
+    location: '33000 Bordeaux',
+    description: 'Lively bistro specializing in regional wines and farm-to-table dishes in a cozy market setting.',
+    amenities: {
+      'Outdoor Seating': true,
+      'Free WiFi': true,
+      'Parking': false,
+      'Live Music': false,
+      'Wheelchair Accessible': true,
+      'Reservations': true,
+    },
+    type: 'Restaurant',
+    image: 'https://images.unsplash.com/photo-1555396273-36734e4ce2b1?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 70
   },
   {
     id: 12,
-    name: 'Wine Tasting Tour',
+    name: 'Montmartre Walking Tour',
     rating: 4.8,
     stars: 0,
-    location: '75009 Paris',
-    description: 'Sample the best French wines on this guided tour through charming Parisian wine cellars.',
+    location: '75018 Paris',
+    description: 'Guided walking tour through the artistic heart of Montmartre, visiting Sacré-Cœur and historic artist haunts.',
     amenities: {
-      'Guide Included': true,
-      'Duration': '2 hours',
-      'Wine Samples': true,
-      'Tickets Included': true,
-      'Group Size': 12,
-    },
-    type: 'Activity',
-    image: 'https://images.unsplash.com/photo-1527168020-7768fa7ab04f?auto=format&fit=crop&w=250&q=80'
-  },
-  {
-    id: 13,
-    name: 'Brasserie Royale',
-    rating: 4.5,
-    stars: 0,
-    location: '75008 Paris',
-    description: 'Classic brasserie with a regal ambiance offering a diverse menu and fine wines.',
-    amenities: {
-      'Outdoor Seating': true,
-      'Pet Friendly': true,
-      'Free WiFi': true,
+      'Guided Tour': true,
+      'Wheelchair Accessible': false,
       'Reservations': true,
-      'Live Music': false,
-    },
-    type: 'Restaurant',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=250&q=80'
-  },
-  {
-    id: 14,
-    name: 'Opera Suites',
-    rating: 4.6,
-    stars: 4,
-    location: '75009 Paris',
-    description: 'Elegant hotel near the Opera with spacious suites, ideal for business and leisure travelers.',
-    amenities: {
-      'Free WiFi': true,
-      'Gym': true,
-      'Room Service': true,
-      '24-hour Front Desk': true,
-      'Parking': true,
-      'Air Conditioning': true,
-    },
-    hotelInfo: {
-      'Check In': '3.00 PM',
-      'Check Out': '12.00 PM',
-      'Parking Area': 30,
-      'Minimum Age to Check In': 18,
-    },
-    type: 'Hotel',
-    image: 'https://images.unsplash.com/photo-1576671081837-d24c406848cc?auto=format&fit=crop&w=250&q=80'
-  },
-  {
-    id: 15,
-    name: 'Bike Tour Paris',
-    rating: 4.7,
-    stars: 0,
-    location: '75007 Paris',
-    description: 'Capture stunning photos of Paris landmarks on this guided photography tour along the Seine.',
-    amenities: {
-      'Guide Included': true,
-      'Duration': '2 hours',
-      'Photography Tips': true,
-      'Tickets Included': true,
-      'Group Size': 10,
+      'Outdoor Activity': true,
     },
     type: 'Activity',
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=250&q=80'
-  },
-  {
-    id: 16,
-    name: 'La Petite Cuisine',
-    rating: 4.4,
-    stars: 0,
-    location: '75005 Paris',
-    description: 'Charming small restaurant serving innovative French cuisine with a cozy atmosphere.',
-    amenities: {
-      'Outdoor Seating': false,
-      'Pet Friendly': false,
-      'Free WiFi': true,
-      'Reservations': true,
-      'Live Music': false,
-    },
-    type: 'Restaurant',
-    image: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=250&q=80'
-  },
-  {
-    id: 17,
-    name: 'Marais Boutique Hotel',
-    rating: 4.3,
-    stars: 3,
-    location: '75006 Paris',
-    description: 'Comfortable hotel with classic decor, located near famous cafés and shops in Saint-Germain.',
-    amenities: {
-      'Free WiFi': true,
-      'Breakfast Included': true,
-      '24-hour Front Desk': true,
-      'Parking': false,
-      'Air Conditioning': false,
-    },
-    hotelInfo: {
-      'Check In': '2.00 PM',
-      'Check Out': '11.00 AM',
-      'Parking Area': 0,
-      'Minimum Age to Check In': 18,
-    },
-    type: 'Hotel',
-    image: 'https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?auto=format&fit=crop&w=250&q=80'
-  },
-  {
-    id: 18,
-    name: 'Cooking Class',
-    rating: 4.5,
-    stars: 0,
-    location: '75011 Paris',
-    description: 'Popular burger joint with homemade buns and gourmet toppings in a relaxed atmosphere.',
-    amenities: {
-      'Outdoor Seating': true,
-      'Pet Friendly': true,
-      'Free WiFi': false,
-      'Reservations': false,
-      'Live Music': false,
-    },
-    type: 'Activity',
-    image: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=250&q=80'
-  },
-  {
-    id: 19,
-    name: 'Riviera Café',
-    rating: 4.1,
-    stars: 2,
-    location: '75012 Paris',
-    description: 'Affordable hotel with simple rooms and friendly service, close to public transport.',
-    amenities: {
-      'Free WiFi': true,
-      'Breakfast Included': false,
-      '24-hour Front Desk': true,
-      'Parking': false,
-      'Air Conditioning': false,
-    },
-    hotelInfo: {
-      'Check In': '3.00 PM',
-      'Check Out': '11.00 AM',
-      'Parking Area': 0,
-      'Minimum Age to Check In': 18,
-    },
-    type: 'Restaurant',
-    image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=250&q=80'
-  },
-  {
-    id: 20,
-    name: 'Versailles Escape',
-    rating: 4.9,
-    stars: 0,
-    location: '75001 Paris',
-    description: 'See Paris illuminated on this evening tour featuring landmarks and charming city views.',
-    amenities: {
-      'Guide Included': true,
-      'Duration': '2 hours',
-      'Tickets Included': true,
-      'Group Size': 15,
-      'Accessibility': 'Good',
-    },
-    type: 'Activity',
-    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=250&q=80'
-  },
+    image: 'https://images.unsplash.com/photo-1505761671935-8a2b2eb378b5?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 30
+  }
 ]
 
 const route = useRoute()
-const id = Number(route.params.id) // read id param and convert to number
-
-// Find hotel by id
+const id = Number(route.params.id)
 const hotel = hotels.find(h => h.id === id) || {}
 
+// form state
+const dateStart = ref("")
+const dateEnd = ref("")
+const guests = ref("1 Room, 2 Adults")
+const rate = ref("Lowest Regular Rate")
+const price = ref("")
+
+// Save reservation
+function reserve() {
+  if (!hotel.id) return
+
+  const newReservation = {
+    id: Date.now(),
+    hotelId: hotel.id,
+    name: hotel.name,
+    dateStart: dateStart.value,
+    dateEnd: dateEnd.value,
+    guests: guests.value,
+    rate: rate.value,
+    price: price.value,
+    image: hotel.image,
+    type: hotel.type,
+    address: hotel.address,
+  }
+
+  const existing = JSON.parse(localStorage.getItem("bookings") || "[]")
+  existing.push(newReservation)
+  localStorage.setItem("bookings", JSON.stringify(existing))
+
+  alert("✅ Reservation saved!")
+}
+
+// Helper to extract number of rooms from guests string
+function getRooms(guestsStr) {
+  const match = guestsStr.match(/^(\d+) Room/)
+  return match ? Number(match[1]) : 1
+}
+
+// Price calculation
+function calculatePrice() {
+  if (!dateStart.value || !dateEnd.value) {
+    price.value = 0;
+    return;
+  }
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // strip time
+
+  const start = new Date(dateStart.value);
+  const end = new Date(dateEnd.value);
+
+  // Check if start date is in the past
+  if (start < today) {
+    alert("Start date cannot be in the past.");
+    dateStart.value = "";
+    price.value = 0;
+    return;
+  }
+
+  // Check if end date is before start
+  if (end < start) {
+    alert("End date must be after start date.");
+    dateEnd.value = "";
+    price.value = 0;
+    return;
+  }
+
+  // Calculate nights
+  const nights = Math.max(0, (end - start) / (1000 * 60 * 60 * 24));
+
+  // Calculate rooms
+  const rooms = getRooms(guests.value);
+
+  // Base price
+  let total = nights * rooms * (hotel.pricePerNight || 0);
+
+  // Apply discount
+  if (rate.value === "Member Discount") {
+    total *= 0.9; // 10% discount
+  }
+
+  price.value = total;
+}
 </script>
 
 <template>
   <div class="container" v-if="hotel && hotel.id">
     <header class="resort-header">
-      <h1>{{ hotel.name }}</h1>
+      <div class="header-top">
+        <img :src="hotel.image" alt="Hotel Image" class="hotel-image" />
+        <h1>{{ hotel.name }}</h1>
+      </div>
       <div class="rating">
         <span class="stars">★★★★★</span>
         <span class="score">{{ hotel.rating.toFixed(1) }}</span>
       </div>
-      <!--
-        <p class="location">📍 {{ hotel.location }}</p>
-        <p class="description">{{ hotel.description }}</p>
-        <a href="#" class="read-more">Read More</a>
-      
-      -->
     </header>
 
     <main class="content">
@@ -427,7 +379,7 @@ const hotel = hotels.find(h => h.id === id) || {}
         </div>
       </section>
 
-      <section class="info-box hotel-info">
+      <section class="info-box hotel-info" v-if="hotel.hotelInfo">
         <h2>Hotel Information</h2>
         <ul>
           <li v-for="(value, key) in hotel.hotelInfo" :key="key">
@@ -437,21 +389,20 @@ const hotel = hotels.find(h => h.id === id) || {}
       </section>
 
       <aside class="booking-box">
-        <!-- booking form remains unchanged -->
         <h2>Details</h2>
 
         <div class="form-group">
           <label for="date-start">📅 Dates</label>
           <div class="date-range">
-            <input type="date" id="date-start" placeholder="jj/mm/aaaa" />
+            <input type="date" id="date-start" v-model="dateStart"  @change="calculatePrice"/>
             <span>→</span>
-            <input type="date" id="date-end" placeholder="jj/mm/aaaa" />
+            <input type="date" id="date-end" v-model="dateEnd" @change="calculatePrice" />
           </div>
         </div>
 
         <div class="form-group">
           <label for="guests">👥 Guests</label>
-          <select id="guests">
+          <select id="guests" v-model="guests" @change="calculatePrice">
             <option>1 Room, 2 Adults</option>
             <option>1 Room, 1 Adult</option>
             <option>2 Rooms, 4 Adults</option>
@@ -460,18 +411,18 @@ const hotel = hotels.find(h => h.id === id) || {}
 
         <div class="form-group">
           <label for="rate">💰 Special Rates</label>
-          <select id="rate">
+          <select id="rate" v-model="rate" @change="calculatePrice">
             <option>Lowest Regular Rate</option>
             <option>Member Discount</option>
           </select>
         </div>
 
-        <div class="price">
-          <strong>Pricing</strong>
-          <input type="text" />
+        <div class="form-group">
+          <label for="price">Total Price</label>
+          <span>{{priceDisplay}}</span>
         </div>
 
-        <button class="reserve-btn">Reserve</button>
+        <button class="reserve-btn" @click="reserve">Reserve</button>
       </aside>
     </main>
   </div>
@@ -482,8 +433,6 @@ const hotel = hotels.find(h => h.id === id) || {}
 </template>
 
 <style scoped>
-/* include the full CSS from your original file here or import it */
-
 .container {
   max-width: 1200px;
   margin: auto;
@@ -500,21 +449,6 @@ const hotel = hotels.find(h => h.id === id) || {}
   color: #fbc02d;
   font-size: 1.2rem;
   margin-bottom: 10px;
-}
-
-.location {
-  color: #777;
-  margin-bottom: 15px;
-}
-
-.description {
-  line-height: 1.6;
-  margin-bottom: 10px;
-}
-
-.read-more {
-  color: #0077cc;
-  text-decoration: none;
 }
 
 .content {
@@ -584,12 +518,14 @@ select {
   font-size: 1.2rem;
   margin: 20px 0;
 }
-input[type="text"]{
+
+input[type="text"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
 }
+
 .reserve-btn {
   background-color: #f7c948;
   border: none;
@@ -613,79 +549,25 @@ input[type="text"]{
   .amenity-list {
     grid-template-columns: 1fr 1fr;
   }
-
-  .profile-circle {
-  width: 40px;
-  height: 40px;
-  background-color: #facc15;
-  border-radius: 50%;
 }
 
-/* Gallery */
-.gallery {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 20px;
-  padding: 32px;
-}
-
-.main-image {
-  position: relative;
-}
-
-.main-image img {
-  width: 100%;
-  border-radius: 10px;
-  height: 100%;
-  object-fit: cover;
-}
-
-.play-button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  border: none;
-  padding: 12px 16px;
-  border-radius: 50%;
-  font-size: 20px;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-
-.side-images {
+.resort-header {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: flex-start;
 }
 
-.side-images img {
-  width: 100%;
-  border-radius: 10px;
-  object-fit: cover;
-}
-
-.image-with-buttons {
-  position: relative;
-}
-
-.image-with-buttons .buttons {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
+.header-top {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 15px;
 }
 
-.image-with-buttons .buttons button {
-  background: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 14px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+.hotel-image {
+  width: 80px;   /* adjust size as needed */
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
 }
-}
+
 </style>

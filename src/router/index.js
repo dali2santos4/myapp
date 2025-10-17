@@ -7,7 +7,10 @@ import ExplorePage from '@/views/ExplorePage.vue';
 import Messanger from '@/views/Messanger.vue';
 import Dashboard from '@/views/Dashboard.vue';
 import Profile from '@/views/Profile.vue';
-import HotelDetails from '../views/HotelDetails.vue'
+import HotelDetails from '../views/HotelDetails.vue';
+import CreationPage from '@/views/CreationPage.vue';
+import UsersPage from '@/views/UsersView.vue';
+import BookedPage from '@/views/BookedPage.vue';
 
 const routes = [
   { path: '/', component: HomePage, name: 'home' },
@@ -18,6 +21,9 @@ const routes = [
   { path: '/messanger', component: Messanger },
   { path: '/dashboard', component: Dashboard },
   { path: '/profile', component: Profile },
+  { path: '/reservation', component: CreationPage, name: 'reservation' },
+  { path: '/users', component: UsersPage, name: 'users' },
+  { path: '/booking', component: BookedPage, name: 'booking' },
   {
     path: '/hotel/:id', // 👈 Dynamic route
     name: 'HotelDetails',

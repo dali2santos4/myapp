@@ -34,7 +34,7 @@
 
           <div class="form-row">
             <label>Username</label>
-            <input type="text" v-model="profile.username" />
+            <input type="text" v-model="profile.username" placeholder="username"/>
           </div>
 
           <div class="form-buttons">
@@ -53,32 +53,78 @@ export default {
 
   data() {
     const email = localStorage.getItem("email") || "";
-    const savedProfile = JSON.parse(localStorage.getItem("userProfile")) || {};
     return {
       userEmail: email,
       profile: {
-        firstName: savedProfile.firstName || "",
-        lastName: savedProfile.lastName || "",
-        email: savedProfile.email || email,
-        username: savedProfile.username || ""
+        firstName: "",
+        lastName: "",
+        email: email,
+        username: ""
       }
     };
   },
 
+  async created() {
+    await this.fetchProfile();
+  },
+
   methods: {
-    updateProfile() {
-      localStorage.setItem("userProfile", JSON.stringify(this.profile));
-      alert("Profile saved locally!");
+    async fetchProfile() {
+      try {
+        const response = await fetch(`http://127.0.0.1:5000/users`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem("token")}` // Add if using JWT
+          }
+        });
+        if (!response.ok) throw new Error("Failed to fetch profile");
+        
+        const data = await response.json();
+        console.log('data', data)
+        this.profile = {
+          firstName: data.firstName || "",
+          lastName: data.lastName || "",
+          email: data.email || this.userEmail,
+          username: data.username || ""
+        };
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      }
     },
+
+    async updateProfile() {
+      try {
+        const response = await fetch(`http://127.0.0.1:5000/user`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("token")}`
+          },
+          body: JSON.stringify({
+            username: this.profile.username,
+            firstName: this.profile.firstName,
+            lastName: this.profile.lastName
+          })
+        });
+
+        if (!response.ok) throw new Error("Failed to update profile");
+        
+        const result = await response.json();
+        alert("Profile updated successfully!");
+        console.log("Updated user:", result.user);
+      } catch (error) {
+        console.error("Error updating profile:", error);
+        alert("Failed to update profile");
+      }
+    },
+
     clearProfile() {
-      localStorage.removeItem("userProfile");
       this.profile = {
         firstName: "",
         lastName: "",
         email: this.userEmail,
         username: ""
       };
-      alert("Local profile cleared.");
+      alert("Form cleared (not saved to database)");
     }
   }
 };

@@ -10,10 +10,9 @@ export default {
       const logout = () => {
         localStorage.removeItem('token'); // or whatever key you're using
         localStorage.removeItem('role'); // or whatever key you're using
-        this.$router.push('/'); // Redirect to login page
-
-        // Refresh the page
-        window.location.reload();
+        this.$router.replace('/').then(() => {
+          window.location.reload();
+        });
       }
 
       return {
@@ -30,10 +29,18 @@ export default {
 
 <template>
      <header class="header">
-      <div class="logo">
+      <div v-if="role != 'ADM'" class="logo">
         <img src="../assets/loggo.png"  alt="Image" class="logo-img" />
        
         <RouterLink  to="/" class="home">
+           <h2 class="styled-heading">Alliance Hotel</h2>
+        </RouterLink>
+      </div>
+
+      <div v-else class="logo">
+        <img src="../assets/loggo.png"  alt="Image" class="logo-img" />
+       
+        <RouterLink  to="/dashboard" class="home">
            <h2 class="styled-heading">Alliance Hotel</h2>
         </RouterLink>
       </div>
@@ -46,9 +53,12 @@ export default {
         <RouterLink to="/profile" >
           <a href="#">Profile</a>
         </RouterLink>
-
-        <a href="#">My Reservations</a>
-        <a href="#">Favorites</a>
+        <RouterLink to="/booking" >
+          <a href="#">My Bookings</a>
+        </RouterLink>
+        <!--
+          <a href="#">Favorites</a>
+        -->
       </nav>
 
       <div v-if="!token" class="action">

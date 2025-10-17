@@ -7,148 +7,270 @@ const router = useRouter()
 const activeCategory = ref('Restaurant')
 const searchQuery = ref('')
 
-const places = ref([
+const places = [
   {
     id: 1,
     name: 'Le Gourmet',
+    rating: 4.5,
+    stars: 0,
+    location: '75007 Paris',
+    description: 'A cozy restaurant serving classic French cuisine with fresh, local ingredients in an elegant setting.',
+    amenities: {
+      'Outdoor Seating': true,
+      'Free WiFi': true,
+      'Parking': false,
+      'Live Music': true,
+      'Wheelchair Accessible': true,
+      'Reservations': true,
+    },
     type: 'Restaurant',
-    address: '45 Rue Cler, 75007 Paris',
-    image: 'https://images.unsplash.com/photo-1600891963934-c6f152f5574d?auto=format&fit=crop&w=250&q=80'
+    image: 'https://images.unsplash.com/photo-1600891963934-c6f152f5574d?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 120
   },
   {
     id: 2,
     name: 'Hotel Lumière',
+    rating: 4.8,
+    stars: 4,
+    location: '75008 Paris',
+    description: 'Modern hotel with stylish rooms, excellent service, and convenient access to major Paris attractions.',
+    amenities: {
+      'Free WiFi': true,
+      'Swimming Pool': true,
+      'Gym': true,
+      'Restaurant': true,
+      'Room Service': true,
+      'Air Conditioning': true,
+      'Parking': true,
+    },
+    hotelInfo: {
+      'Check In': '3:00 PM',
+      'Check Out': '12:00 PM',
+      'Parking Area': 50,
+      'Minimum Age to Check In': 18,
+    },
     type: 'Hotel',
-    address: '12 Avenue des Champs, 75008 Paris',
-    image: 'https://images.unsplash.com/photo-1542317854-336c984173cb?auto=format&fit=crop&w=250&q=80'
+    image: 'https://images.unsplash.com/photo-1542317854-336c984173cb?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 200
   },
   {
     id: 3,
-    name: 'Eiffel Tower Tour',
-    type: 'Activity',
-    address: 'Champ de Mars, 75007 Paris',
-    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=250&q=80'
+    name: 'La Belle Époque',
+    rating: 4.7,
+    stars: 0,
+    location: '69002 Lyon',
+    description: 'Charming bistro offering a fusion of traditional and modern French dishes in a vibrant atmosphere.',
+    amenities: {
+      'Outdoor Seating': true,
+      'Free WiFi': true,
+      'Parking': false,
+      'Live Music': false,
+      'Wheelchair Accessible': true,
+      'Reservations': true,
+    },
+    type: 'Restaurant',
+    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 90
   },
   {
     id: 4,
-    name: 'Chez Marie',
-    type: 'Restaurant',
-    address: '88 Rue de Rivoli, 75004 Paris',
-    image: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=250&q=80'
+    name: 'Château du Soleil',
+    rating: 4.9,
+    stars: 5,
+    location: '83990 Saint-Tropez',
+    description: 'Luxurious seaside hotel with stunning views, world-class spa, and gourmet dining options.',
+    amenities: {
+      'Free WiFi': true,
+      'Swimming Pool': true,
+      'Gym': true,
+      'Restaurant': true,
+      'Room Service': true,
+      'Air Conditioning': true,
+      'Parking': true,
+      'Spa': true,
+    },
+    hotelInfo: {
+      'Check In': '2:00 PM',
+      'Check Out': '11:00 AM',
+      'Parking Area': 30,
+      'Minimum Age to Check In': 21,
+    },
+    type: 'Hotel',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 350
   },
   {
     id: 5,
-    name: 'Parisian Stay',
-    type: 'Hotel',
-    address: '22 Boulevard Haussmann, 75009 Paris',
-    image: 'https://images.unsplash.com/photo-1560067174-89427a2a0f29?auto=format&fit=crop&w=250&q=80'
+    name: 'Café de la Paix',
+    rating: 4.3,
+    stars: 0,
+    location: '75009 Paris',
+    description: 'Historic café known for its opulent decor and a menu featuring classic Parisian pastries and coffee.',
+    amenities: {
+      'Outdoor Seating': true,
+      'Free WiFi': true,
+      'Parking': false,
+      'Live Music': false,
+      'Wheelchair Accessible': true,
+      'Reservations': false,
+    },
+    type: 'Restaurant',
+    image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 60
   },
   {
     id: 6,
-    name: 'Seine River Cruise',
-    type: 'Activity',
-    address: 'Quai de la Tournelle, 75005 Paris',
-    image: 'https://images.unsplash.com/photo-1602524207232-0c3ee9427c9b?auto=format&fit=crop&w=250&q=80'
+    name: 'Auberge des Montagnes',
+    rating: 4.6,
+    stars: 3,
+    location: '74400 Chamonix',
+    description: 'Cozy alpine hotel perfect for skiers, with warm rooms and easy access to Mont Blanc slopes.',
+    amenities: {
+      'Free WiFi': true,
+      'Swimming Pool': false,
+      'Gym': false,
+      'Restaurant': true,
+      'Room Service': false,
+      'Air Conditioning': false,
+      'Parking': true,
+    },
+    hotelInfo: {
+      'Check In': '4:00 PM',
+      'Check Out': '10:00 AM',
+      'Parking Area': 20,
+      'Minimum Age to Check In': 18,
+    },
+    type: 'Hotel',
+    image: 'https://images.unsplash.com/photo-1576675764574-81a7256b7023?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 150
   },
   {
     id: 7,
-    name: 'Bistro Belleville',
+    name: 'Trattoria Bella',
+    rating: 4.4,
+    stars: 0,
+    location: '31000 Toulouse',
+    description: 'Authentic Italian trattoria serving homemade pasta and wood-fired pizzas in a rustic setting.',
+    amenities: {
+      'Outdoor Seating': true,
+      'Free WiFi': false,
+      'Parking': true,
+      'Live Music': true,
+      'Wheelchair Accessible': true,
+      'Reservations': true,
+    },
     type: 'Restaurant',
-    address: '10 Rue de Belleville, 75020 Paris',
-    image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=250&q=80'
+    image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 80
   },
   {
     id: 8,
-    name: 'Montmartre Inn',
+    name: 'Hôtel de la Mer',
+    rating: 4.8,
+    stars: 4,
+    location: '06000 Nice',
+    description: 'Elegant beachfront hotel with modern rooms, a rooftop terrace, and proximity to the Promenade des Anglais.',
+    amenities: {
+      'Free WiFi': true,
+      'Swimming Pool': true,
+      'Gym': true,
+      'Restaurant': true,
+      'Room Service': true,
+      'Air Conditioning': true,
+      'Parking': true,
+      'Beach Access': true,
+    },
+    hotelInfo: {
+      'Check In': '3:00 PM',
+      'Check Out': '11:30 AM',
+      'Parking Area': 40,
+      'Minimum Age to Check In': 18,
+    },
     type: 'Hotel',
-    address: '3 Rue Lepic, 75018 Paris',
-    image: 'https://images.unsplash.com/photo-1542317850-88d7e3a3705c?auto=format&fit=crop&w=250&q=80'
+    image: 'https://images.unsplash.com/photo-1517840901100-8179e20d97c5?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 250
   },
   {
     id: 9,
-    name: 'Louvre Guided Visit',
+    name: 'Seine River Cruise',
+    rating: 4.6,
+    stars: 0,
+    location: '75004 Paris',
+    description: 'Scenic evening cruise along the Seine, offering stunning views of Paris landmarks like the Eiffel Tower and Notre-Dame.',
+    amenities: {
+      'Guided Tour': true,
+      'Food Available': true,
+      'Wheelchair Accessible': true,
+      'Reservations': true,
+      'Outdoor Seating': true,
+    },
     type: 'Activity',
-    address: 'Rue de Rivoli, 75001 Paris',
-    image: 'https://images.unsplash.com/photo-1534850336045-c6c6d287f89e?auto=format&fit=crop&w=250&q=80'
+    image: 'https://images.unsplash.com/photo-1502602898650-2c301c8c3633?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 45
   },
   {
     id: 10,
-    name: 'Café de Flore',
-    type: 'Restaurant',
-    address: '172 Boulevard Saint-Germain, 75006 Paris',
-    image: 'https://images.unsplash.com/photo-1604893431688-803f66e493f9?auto=format&fit=crop&w=250&q=80'
+    name: 'Villa Étoile',
+    rating: 4.7,
+    stars: 4,
+    location: '06400 Cannes',
+    description: 'Boutique hotel with elegant rooms, a lush garden, and close proximity to the Cannes Film Festival venues.',
+    amenities: {
+      'Free WiFi': true,
+      'Swimming Pool': true,
+      'Gym': false,
+      'Restaurant': true,
+      'Room Service': true,
+      'Air Conditioning': true,
+      'Parking': true,
+    },
+    hotelInfo: {
+      'Check In': '3:00 PM',
+      'Check Out': '11:00 AM',
+      'Parking Area': 25,
+      'Minimum Age to Check In': 18,
+    },
+    type: 'Hotel',
+    image: 'https://images.unsplash.com/photo-1564501049412-3d59d1a81e43?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 220
   },
   {
     id: 11,
-    name: 'Etoile Palace',
-    type: 'Hotel',
-    address: '5 Rue Balzac, 75008 Paris',
-    image: 'https://images.unsplash.com/photo-1582719478148-bd1aa4a2c859?auto=format&fit=crop&w=250&q=80'
+    name: 'Bistro du Marché',
+    rating: 4.2,
+    stars: 0,
+    location: '33000 Bordeaux',
+    description: 'Lively bistro specializing in regional wines and farm-to-table dishes in a cozy market setting.',
+    amenities: {
+      'Outdoor Seating': true,
+      'Free WiFi': true,
+      'Parking': false,
+      'Live Music': false,
+      'Wheelchair Accessible': true,
+      'Reservations': true,
+    },
+    type: 'Restaurant',
+    image: 'https://images.unsplash.com/photo-1555396273-36734e4ce2b1?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 70
   },
   {
     id: 12,
-    name: 'Wine Tasting Tour',
+    name: 'Montmartre Walking Tour',
+    rating: 4.8,
+    stars: 0,
+    location: '75018 Paris',
+    description: 'Guided walking tour through the artistic heart of Montmartre, visiting Sacré-Cœur and historic artist haunts.',
+    amenities: {
+      'Guided Tour': true,
+      'Wheelchair Accessible': false,
+      'Reservations': true,
+      'Outdoor Activity': true,
+    },
     type: 'Activity',
-    address: '18 Rue des Martyrs, 75009 Paris',
-    image: 'https://images.unsplash.com/photo-1527168020-7768fa7ab04f?auto=format&fit=crop&w=250&q=80'
-  },
-  {
-    id: 13,
-    name: 'Brasserie Royale',
-    type: 'Restaurant',
-    address: '2 Place de la Concorde, 75008 Paris',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=250&q=80'
-  },
-  {
-    id: 14,
-    name: 'Opera Suites',
-    type: 'Hotel',
-    address: '8 Rue Scribe, 75009 Paris',
-    image: 'https://images.unsplash.com/photo-1576671081837-d24c406848cc?auto=format&fit=crop&w=250&q=80'
-  },
-  {
-    id: 15,
-    name: 'Bike Tour Paris',
-    type: 'Activity',
-    address: 'Place Vendôme, 75001 Paris',
-    image: 'https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?auto=format&fit=crop&w=250&q=80'
-  },
-  {
-    id: 16,
-    name: 'La Petite Cuisine',
-    type: 'Restaurant',
-    address: '11 Rue Oberkampf, 75011 Paris',
-    image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=250&q=80'
-  },
-  {
-    id: 17,
-    name: 'Marais Boutique Hotel',
-    type: 'Hotel',
-    address: '29 Rue de Turenne, 75003 Paris',
-    image: 'https://images.unsplash.com/photo-1590490360180-3b3c2febe776?auto=format&fit=crop&w=250&q=80'
-  },
-  {
-    id: 18,
-    name: 'Cooking Class',
-    type: 'Activity',
-    address: 'Rue Saint-Antoine, 75004 Paris',
-    image: 'https://images.unsplash.com/photo-1577978305975-25e5077f3b7f?auto=format&fit=crop&w=250&q=80'
-  },
-  {
-    id: 19,
-    name: 'Riviera Café',
-    type: 'Restaurant',
-    address: '60 Quai de Jemmapes, 75010 Paris',
-    image: 'https://images.unsplash.com/photo-1572059055613-4f2d1f1782dd?auto=format&fit=crop&w=250&q=80'
-  },
-  {
-    id: 20,
-    name: 'Versailles Escape',
-    type: 'Activity',
-    address: 'Place d’Armes, 78000 Versailles',
-    image: 'https://images.unsplash.com/photo-1600585153088-8403e04aa8f3?auto=format&fit=crop&w=250&q=80'
+    image: 'https://images.unsplash.com/photo-1505761671935-8a2b2eb378b5?auto=format&fit=crop&w=800&q=80',
+    pricePerNight: 30
   }
-])
+]
 
 function goToHotelDetails(id) {
   router.push(`/hotel/${id}`)
@@ -157,7 +279,7 @@ function goToHotelDetails(id) {
 const categories = ['Hotel', 'Restaurant', 'Activity']
 
 const filteredPlaces = computed(() => {
-  return places.value.filter(
+  return places.filter(
     (place) =>
       place.type === activeCategory.value &&
       place.name.toLowerCase().includes(searchQuery.value.toLowerCase())
@@ -194,7 +316,7 @@ function changeCategory(category) {
       <div class="card" v-for="place in filteredPlaces" :key="place.id">
         <img :src="place.image" :alt="place.name" />
         <h5>{{ place.name }}</h5>
-        <p>{{ place.address }}</p>
+        <p>{{ place.location }}</p>
         <div class="card-actions">
           <button class="view-btn" @click="goToHotelDetails(place.id)">View</button>
           <i class="far fa-heart"></i>
@@ -294,5 +416,14 @@ h1 {
   border-radius: 6px;
   cursor: pointer;
   width: 100%;
+}
+
+.book-btn {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 </style>
